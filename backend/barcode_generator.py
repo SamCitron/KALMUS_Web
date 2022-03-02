@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 
 def makeBarcodesFromJSON(filename,saveAs):
-    print('HERE')
     generator = BarcodeGenerator()
     generator.generate_barcode_from_json(filename, barcode_type="Color")
     barcode = generator.get_barcode()           # Get the Barcode object
