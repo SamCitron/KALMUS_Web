@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def makeBarcodesFromJSON(filename,saveAs):
     generator = BarcodeGenerator()
-    generator.generate_barcode_from_json(filename, barcode_type="Color")
+    generator.generate_barcode_from_json('json_barcodes/{}'.format(filename), barcode_type="Color")
     barcode = generator.get_barcode()           # Get the Barcode object
     barcode_image = barcode.get_barcode()       # Get the Barcode image (a numpy array)
    
@@ -15,7 +15,7 @@ def makeBarcodesFromJSON(filename,saveAs):
     plt.imsave('./static/{}.jpg'.format(saveAs), barcode_image) 
 
 def main():
-    makeBarcodesFromJSON('../json_barcodes/1996_03_mission_impossible.mp4_Average_Background_Color.json')
+    makeBarcodesFromJSON('json_barcodes/1996_03_mission_impossible.mp4_Average_Background_Color.json', '1234')
     print('Main run')
 
 if __name__ == "__main__":

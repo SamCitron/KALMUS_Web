@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import barcode_generator
 import json
 import logging
@@ -6,7 +7,8 @@ import uuid
 from threading import Thread
 logging.basicConfig(level=logging.DEBUG)
 
-app = Flask(__name__, static_url_path='', static_folder='/static')
+app = Flask(__name__, static_folder='static')
+CORS(app)
 
 @app.route('/api', methods=['GET', 'POST'])
 def index():
@@ -19,12 +21,10 @@ def index():
         thread.daemon = True
         thread.start()
         print('HERE')
-        return jsonify({'result': 'ok'})
-        #print(args.get('content'))
-        #barcode_generator.makeBarcodesFromJSON(args.get('content'), filename)
-        #return jsonify({'result':'ok'})
-    except:
         return jsonify({'result': '{}.jpg'.format(filename)})
+
+    except:
+        return jsonify({'result': 'exception'})
 
 
 
