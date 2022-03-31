@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Router, Link } from 'react-router-dom';
 import { Test } from './components/Test';
 import Dropdown from './components/Dropdown';
 
 function App(props) {
-  const [selection, setSelection] = useState({});
   const [imageFile, setImageFile] = useState('');
   const [image, setImage] = useState({});
 
@@ -27,7 +25,6 @@ function App(props) {
         'Content-Type': 'arraybuffer',
       },
     })
-      //.then((res) => res.body)
       .then((res) => {
         console.log('GET Movie:', res);
         if (!res.ok) {
@@ -35,21 +32,24 @@ function App(props) {
           setTimeout(getImage(movieLink), 1000);
         } else {
           console.log('Res good');
+
+          // https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_readable_streams
+
           const reader = res.body.getReader();
           return new ReadableStream({
             start(controller) {
               return pump();
-              function pump() {
-                return reader.read().then(({ done, value }) => {
-                  // When no more data needs to be consumed, close the stream
-                  if (done) {
-                    controller.close();
-                    return;
-                  }
-                  // Enqueue the next data chunk into our target stream
-                  controller.enqueue(value);
-                  return pump();
-                });
+              async function pump() {
+                const { done, value } = await reader.read();
+                // When no more data needs to be consumed, close the stream
+                if (done) {
+                  controller.close();
+                  console.log('Stream Complete');
+                  return;
+                }
+                // Enqueue the next data chunk into our target stream
+                controller.enqueue(value);
+                return pump();
               }
             },
           });
@@ -90,7 +90,7 @@ function App(props) {
         console.log('POST RES:', res.result);
         setImageFile(res.result);
         // Start timer to go off in 500 seconds
-        let timer = setTimeout(getImage(res.result), 1000);
+        setTimeout(getImage(res.result), 1000);
       })
       .catch((err) => {
         console.log(err);
@@ -100,7 +100,6 @@ function App(props) {
   return (
     <div classname='App'>
       <Test />
-      <a href='http://localhost:5000/static/download.jpeg'> here2 </a>
       <Dropdown apphandleDropDown={apphandleDropDown} />
       <img src={image.pic}></img>
     </div>
