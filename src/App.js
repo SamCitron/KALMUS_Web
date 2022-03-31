@@ -24,20 +24,53 @@ function App(props) {
       method: 'GET',
       mode: 'cors',
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'applications/json',
+        'Content-Type': 'arraybuffer',
       },
     })
-      .then((res) => res.text())
+      //.then((res) => res.body)
       .then((res) => {
         console.log('GET Movie:', res);
-        if (res.ok) {
-          console.log('Res good');
-          setImage({ pic: JSON.parse(res) });
-        } else {
+        if (!res.ok) {
           console.log('res bad, restart timer');
-          let timer = setTimeout(getImage(movieLink), 1000);
+          setTimeout(getImage(movieLink), 1000);
+        } else {
+          console.log('Res good');
+          const reader = res.body.getReader();
+          return new ReadableStream({
+            start(controller) {
+              return pump();
+              function pump() {
+                return reader.read().then(({ done, value }) => {
+                  // When no more data needs to be consumed, close the stream
+                  if (done) {
+                    controller.close();
+                    return;
+                  }
+                  // Enqueue the next data chunk into our target stream
+                  controller.enqueue(value);
+                  return pump();
+                });
+              }
+            },
+          });
+          // const base64 = btoa(
+          //   new Uint8Array(res.data).reduce(
+          //     (data, byte) => data + String.fromCharCode(byte),
+          //     ''
+          //   )
+          //);
+          //const imageObjectUrl = URL.createObjectURL(res);
+          //console.log(base64);
+          //setImage({ pic: 'data:;base64,' + base64 });
+          //console.log(image.pic);
         }
+      })
+      .then((stream) => new Response(stream))
+      .then((response) => response.blob())
+      .then((blob) => URL.createObjectURL(blob))
+      .then((url) => {
+        console.log((image.src = url));
+        setImage({ pic: url });
       });
   }
 
