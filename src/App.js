@@ -78,13 +78,15 @@ function App(props) {
     console.log(userSelection);
     let params = {
       method: 'POST',
+      //mode: 'cors',
+      crossDomain: true,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         content: userSelection,
       }),
     };
 
-    fetch('./api', params)
+    fetch('http://localhost:5000/api/', params)
       .then((res) => res.json())
       .then((res) => {
         console.log('POST RES:', res.result);
