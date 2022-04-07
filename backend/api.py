@@ -6,16 +6,13 @@ import logging
 import uuid
 from threading import Thread
 logging.basicConfig(level=logging.DEBUG)
-logging.getLogger('flask_cors').level = logging.DEBUG
 
 
 app = Flask(__name__, static_folder='static')
-CORS(app, resources=r'/api/*', origins=['http://localhost:5000', 'http://localhost:3000', '*'])
-#app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
 
 
-@app.route('/api', methods=['GET', 'POST'])
-@cross_origin(allow_headers=['Content-Type'])
+@app.route('/api/', methods=['GET', 'POST'])
 def index():
     try:
         filename = uuid.uuid4() 
