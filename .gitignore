@@ -10,7 +10,7 @@
 
 # production
 /build
-/backend/json_barcodes/
+/backend/json_barcodes
 
 # misc
 .DS_Store
