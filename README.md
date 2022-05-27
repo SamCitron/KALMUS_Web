@@ -29,7 +29,7 @@ On the backend this includes:
 ## Getting Started
 
 To start the application you must have two terminal windows open.
-In the first, run:
+In the first, run:  
 `npm start`  
 This starts the React frontend side.
 
