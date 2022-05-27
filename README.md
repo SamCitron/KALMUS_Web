@@ -1,15 +1,42 @@
-# Getting Started with Create React App
+# Kalmus Online
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Necessary Packages
 
-### `npm start`
+You must have all necessary packages downlaoded.
+On the front end this includes:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [React](https://reactjs.org/)
+  - Preqequisites for this include npm, NodeJS, webpack, and Babel
+- [MaterialUI](https://mui.com/)
+- [CORS](https://www.npmjs.com/package/cors)
+
+On the backend this includes:
+
+- [Pipenv](https://pypi.org/project/pipenv/)
+  - In the pipenv shell, you will want to download all of the next packages with: `pipenv install ___`
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/installation/)
+- [Python-dotenv](https://pypi.org/project/python-dotenv/)
+- [Numpy](https://pypi.org/project/numpy/)
+- [Kalmus](https://kalmus-color-toolkit.github.io/KALMUS/install.html)
+- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/)
+
+---
+
+## Getting Started
+
+To start the application you must have two terminal windows open.
+In the first, run:
+`npm start`  
+This starts the React frontend side.
+
+In the second, navigate to the `backend` folder and run:  
+`pipenv shell`  
+`python3 ./api.py`  
+This starts the server side.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
@@ -29,15 +56,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
 ## Learn More
 
@@ -45,26 +64,14 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+To learn more about Kalmus, visit it's [documentation pages](https://kalmus-color-toolkit.github.io/KALMUS/index.html)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+For assistance with the existing code, you can contact:  
+Sam Citron - scitron14@gmail.com
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For assistance with Kalmus itself, you can contact:  
+Edward Chen - yc015@bucknell.edu

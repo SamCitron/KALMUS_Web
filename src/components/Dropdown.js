@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import {
   Autocomplete,
@@ -9,6 +9,8 @@ import {
   Select,
 } from '@mui/material';
 
+// List of movies that are currently in available in our json_barcodes folder
+// The name is what the user will see and type in their dropdown, the value is what alligns to the .json file's substring
 const movies = [
   { name: 'Mission Impossible', value: 'mission_impossible' },
   { name: 'Ratatouille', value: 'ratatouille' },
@@ -20,12 +22,19 @@ const movies = [
 ];
 
 export default function Dropdown(props) {
+  /**
+   * React JS interface for user's dropdown. Includes one autocomplete dropdown for selecting the titles of movies, and two set dropdown menus for Color Metric and Frame Type.
+   * This works and passes the user's input to App.js sucessfully.
+   */
+
+  // Set up our react hooks
   const [movie, setMovie] = useState(null);
   const [colorMetric, setColorMetric] = useState('');
   const [frameType, setFrameType] = useState('');
 
   return (
     <div>
+      {/*The autocomplete component from materialUI*/}
       <Autocomplete
         id='select-movie'
         options={movies}
@@ -42,6 +51,7 @@ export default function Dropdown(props) {
       />
 
       <FormControl fullWidth>
+        {/*Dropdown menu from materialUI*/}
         <InputLabel id='select-color-metric'>Select Color Metric</InputLabel>
         <Select
           labelId='select-color-metric'
@@ -65,6 +75,7 @@ export default function Dropdown(props) {
       </FormControl>
 
       <FormControl fullWidth>
+        {/*Dropdown menu from materialUI*/}
         <InputLabel id='select-frame-type'>Select Frame Type</InputLabel>
         <Select
           labelId='select-frame-type'
@@ -85,10 +96,11 @@ export default function Dropdown(props) {
         </Select>
       </FormControl>
 
+      {/*Submit button that triggers props to get passed back to App.js*/}
       <Button
         variant='contained'
         onClick={() =>
-          props.getImageFile({
+          props.generateImage({
             movieTitle: movie.value,
             colorMetric: colorMetric,
             frameType: frameType,
