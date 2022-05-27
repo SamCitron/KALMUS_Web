@@ -30,12 +30,16 @@ On the backend this includes:
 
 To start the application you must have two terminal windows open.
 In the first, run:  
+
 `npm start`  
+
 This starts the React frontend side.
 
 In the second, navigate to the `backend` folder and run:  
+
 `pipenv shell`  
 `python3 ./api.py`  
+
 This starts the server side.
 
 The page will reload when you make changes.\
